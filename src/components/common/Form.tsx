@@ -1,0 +1,11 @@
+import { forwardRef } from "react";
+
+export type FormProps = React.FormHTMLAttributes<HTMLFormElement> & {};
+const Form = forwardRef<HTMLFormElement, FormProps>(({ children, ...rest }, ref) => {
+  return (
+    <form {...rest} ref={ref}>
+      {children}
+    </form>
+  );
+});
+export default Form;

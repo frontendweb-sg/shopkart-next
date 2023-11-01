@@ -16,15 +16,13 @@ export async function POST(req: NextRequest) {
   await connectDb();
   try {
     const body = (await req.json()) as ISignin;
-
+    console.log("body", body);
     const user = (await User.findOne({
       $or: [{ email: body.email }, { mobile: body.email }],
     })) as IUserDoc;
 
     if (!user) {
-      throw new AuthError(
-        "No account associate with this email and mobile,please register"
-      );
+      throw new AuthError("No account associate with this email and mobile,please register");
     }
 
     const verify = Password.compare(body.password, user.password);

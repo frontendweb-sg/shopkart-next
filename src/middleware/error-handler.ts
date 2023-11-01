@@ -9,9 +9,6 @@ import { BadRequestError } from "@/errors/bad-request-error";
  * @returns
  */
 export const errorHandler = (error: CustomError) => {
-  console.log(error);
-  if (error instanceof Error.ValidationError) {
-    error = new BadRequestError(error.message);
-  }
-  return NextResponse.json({ error }, { status: error.status });
+  console.log(error.message);
+  return NextResponse.json({ errors: error.renderError() }, { status: error.status });
 };
