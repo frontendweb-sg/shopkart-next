@@ -5,6 +5,10 @@ declare module NodeJS {
   }
 }
 
+type Size = "xs" | "sm" | "md" | "lg" | "xl" | "block";
+type Color = "primary" | "secondary" | "info" | "warning" | "success" | "danger" | "text";
+type Variant = "filled" | "outlined" | "text";
+
 interface IError {
   message: string;
   field?: string;

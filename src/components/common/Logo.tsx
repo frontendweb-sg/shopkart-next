@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import Link, { LinkProps } from "next/link";
 /**
  * Logo component
@@ -5,14 +6,14 @@ import Link, { LinkProps } from "next/link";
  */
 type LogoProps = LinkProps & {
   label?: string;
+  className?: string;
 };
-const Logo = ({ href = "/", label = "eKart", ...rest }: LogoProps) => {
+const Logo = ({ className, href = "/", label = "eKart", ...rest }: LogoProps) => {
+  const classes = classNames("block text-center", className);
   return (
-    <div>
-      <Link href={href} {...rest}>
-        {label}
-      </Link>
-    </div>
+    <Link className={classes} href={href} {...rest}>
+      {label}
+    </Link>
   );
 };
 

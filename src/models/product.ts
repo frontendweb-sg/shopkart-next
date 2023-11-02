@@ -1,5 +1,5 @@
 import { Schema, Document, models, model, ObjectId } from "mongoose";
-import { CATEGORY_TABLE } from "./category";
+import { CATEGORY_TABLE, ICategoryDoc } from "./category";
 
 export interface ProductAttributes {
   name: string;
@@ -9,7 +9,7 @@ export const PRODUCT_TABLE = "Product";
 export interface IProduct {
   title: string;
   slug: string;
-  category: ObjectId;
+  category: ObjectId | ICategoryDoc;
   description: string;
   summary?: string;
   images: string[];
@@ -34,5 +34,4 @@ const schema = new Schema({
   price: { type: Number, default: 0 },
   active: { type: Boolean, default: true },
 });
-export const Product =
-  models[PRODUCT_TABLE] || model<IProductDoc>(PRODUCT_TABLE, schema);
+export const Product = models[PRODUCT_TABLE] || model<IProductDoc>(PRODUCT_TABLE, schema);

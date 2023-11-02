@@ -15,9 +15,17 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(req: NextRequest) {
   await connectDb();
   try {
-    const products = (await Product.find().populate(
-      "category"
-    )) as IProductDoc[];
+    const query = req.nextUrl.searchParams;
+    const category = query.get("category");
+    let products = (await Product.find({})) as IProductDoc[];
+    if (category !== "undefined") {
+      console.log("hi", category);
+      products = (await Product.find({}).populate({
+        path: "category",
+        match: { slug: { $eq: query.get("category") } },
+      })) as IProductDoc[];
+    }
+
     return NextResponse.json(products, { status: 200 });
   } catch (error) {
     return errorHandler(error as CustomError);

@@ -1,23 +1,34 @@
+import Header from "@/components/layouts/Header";
 import { getCategories } from "@/lib/category";
-import { Category, ICategoryDoc } from "@/models/category";
+import { ICategoryDoc } from "@/models/category";
 import Link from "next/link";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
+/**
+ * Products layout
+ * @param param0
+ * @returns
+ */
 const Layout = async ({ children }: { children: ReactNode }) => {
-  const lists: ICategoryDoc[] = await getCategories();
+  const categories = await getCategories();
   return (
-    <div className="flex w-3/4 m-auto">
-      <div className="md:w-1/5 bg-slate-400">
-        {lists.map((cat: ICategoryDoc) => {
-          return (
-            <div>
-              <Link href={"/category/" + cat.title.toLowerCase()}>{cat.title}</Link>
-            </div>
-          );
-        })}
+    <>
+      <Header />
+      <div className="flex w-5/6 p-4  m-auto mt-3">
+        <aside className="w-64 p-4 bg-slate-50">
+          {categories.map((cat: ICategoryDoc) => {
+            return (
+              <div className="mb-2 block">
+                <Link href={"/products?category=" + encodeURIComponent(cat.title.toLowerCase())}>
+                  {cat.title}
+                </Link>
+              </div>
+            );
+          })}
+        </aside>
+        {children}
       </div>
-      {children}
-    </div>
+    </>
   );
 };
 

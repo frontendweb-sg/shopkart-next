@@ -1,9 +1,8 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
 import AuthProvider from "@/components/context/Auth";
-import { getServerSession } from "next-auth"
-const inter = Inter({ subsets: ["latin"] });
+import type { Metadata } from "next";
+import { getServerSession } from "next-auth";
+import { roboto } from "@/utils/fonts";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -12,10 +11,9 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const session = await getServerSession();
-  console.log("s", session);
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={roboto.className}>
         <AuthProvider session={session!}>{children}</AuthProvider>
       </body>
     </html>

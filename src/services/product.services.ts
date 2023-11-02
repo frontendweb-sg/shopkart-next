@@ -24,6 +24,9 @@ class ProductService implements ApiService<IProductDoc, IProduct> {
   getByCategoryId(categoryId: string) {
     return Api.get(SERVICE_API_URL);
   }
+  getByCategory(category: string) {
+    return Api.get(`${SERVICE_API_URL}?category=${category}`);
+  }
   add(body: IProduct): Promise<AxiosResponse<IProductDoc, any>> {
     return Api.post(SERVICE_API_URL, body);
   }
