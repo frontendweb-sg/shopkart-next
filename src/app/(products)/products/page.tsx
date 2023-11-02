@@ -11,7 +11,7 @@ const Page = async ({ searchParams }: { searchParams: SearchParamsProps }) => {
   return (
     <div>
       {products.map((product: IProductDoc) => (
-        <Product product={product} />
+        <Product key={product.id} product={product} />
       ))}
     </div>
   );

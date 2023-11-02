@@ -13,18 +13,26 @@ const DataTable = <T, K extends keyof T>({ columns, rows }: TableProps<T, K>) =>
         <thead>
           <tr className="bg-slate-300">
             {columns.map((column: TableColumnProps<T, K>, index: number) => (
-              <th className="border-b dark:border-slate-600 font-medium p-3  text-slate-400 dark:text-slate-200 text-left">
+              <th
+                key={index}
+                className="border-b dark:border-slate-600 font-medium p-3  text-slate-400 dark:text-slate-200 text-left"
+              >
                 {column["headerName" ?? "field"]}
               </th>
             ))}
           </tr>
         </thead>
         <tbody className="bg-slate-200">
-          {rows.map((row: T) => {
+          {rows.map((row: T, index: number) => {
             return (
-              <tr>
-                {columns.map((col: TableColumnProps<T, K>) => (
-                  <td className="border-b p-3 border-slate-300">{row[col["field"]] as string}</td>
+              <tr key={index}>
+                {columns.map((col: TableColumnProps<T, K>, subIndex: number) => (
+                  <td
+                    key={"row-" + index + "-col-" + subIndex}
+                    className="border-b p-3 border-slate-300"
+                  >
+                    {row[col["field"]] as string}
+                  </td>
                 ))}
               </tr>
             );

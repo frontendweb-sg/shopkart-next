@@ -1,4 +1,5 @@
-import { IProductDoc } from "@/models/product";
+import { ICategory } from "@/models/category";
+import { IProduct, IProductDoc } from "@/models/product";
 import Image from "next/image";
 
 type ProductProps = {
@@ -14,7 +15,7 @@ const Product = ({ product }: ProductProps) => {
         </div>
         <div>
           <h6>
-            {product.title} - ({product.category?.title})
+            {product.title} - ({(product.category as ICategory).title})
           </h6>
           <p>{product.price}</p>
         </div>

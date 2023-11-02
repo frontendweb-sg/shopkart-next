@@ -18,7 +18,7 @@ const Layout = async ({ children }: { children: ReactNode }) => {
         <aside className="w-64 p-4 bg-slate-50">
           {categories.map((cat: ICategoryDoc) => {
             return (
-              <div className="mb-2 block">
+              <div key={cat.id} className="mb-2 block">
                 <Link href={"/products?category=" + encodeURIComponent(cat.title.toLowerCase())}>
                   {cat.title}
                 </Link>

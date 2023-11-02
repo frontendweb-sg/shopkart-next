@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { forwardRef } from "react";
+import { forwardRef, memo } from "react";
 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   color?: Color;
@@ -32,5 +32,5 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     );
   }
 );
-
-export default Button;
+Button.displayName = "Button";
+export default memo(Button);

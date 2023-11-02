@@ -1,5 +1,5 @@
 import { Schema, Document, models, model, ObjectId } from "mongoose";
-import { CATEGORY_TABLE, ICategoryDoc } from "./category";
+import { CATEGORY_TABLE, ICategory, ICategoryDoc } from "./category";
 
 export interface ProductAttributes {
   name: string;
@@ -9,7 +9,7 @@ export const PRODUCT_TABLE = "Product";
 export interface IProduct {
   title: string;
   slug: string;
-  category: ObjectId | ICategoryDoc;
+  category: ObjectId | ICategory;
   description: string;
   summary?: string;
   images: string[];

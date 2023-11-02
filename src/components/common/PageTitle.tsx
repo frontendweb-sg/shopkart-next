@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { forwardRef } from "react";
+import { forwardRef, memo } from "react";
 
 export type PageTitleProps = React.HtmlHTMLAttributes<HTMLDivElement> & {
   label?: string;
@@ -19,4 +19,5 @@ const PageTitle = forwardRef<HTMLDivElement, PageTitleProps>(
   }
 );
 
-export default PageTitle;
+PageTitle.displayName = "PageTitle";
+export default memo(PageTitle);
