@@ -12,11 +12,11 @@ interface IError {
   info?: object | null;
 }
 
-interface ISignin {
+interface ILogin {
   email: string;
   password: string;
 }
-interface ISingup {
+interface IRegister {
   name: string;
   email: string;
   password: string;

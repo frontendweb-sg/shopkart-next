@@ -1,7 +1,13 @@
+import classNames from "classnames";
 import { ReactNode } from "react";
 
-const Container = ({ children }: { children: ReactNode }) => {
-  return <div className="px-4 m-auto max-w">{children}</div>;
+export type ContainerProps = React.HtmlHTMLAttributes<HTMLDivElement> & {};
+const Container = ({ children, className, ...rest }: ContainerProps) => {
+  return (
+    <div className={classNames(className)} {...rest}>
+      {children}
+    </div>
+  );
 };
 
 export default Container;

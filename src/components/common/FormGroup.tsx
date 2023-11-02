@@ -13,4 +13,5 @@ const FormGroup = forwardRef<HTMLDivElement, FormGroupProps>(
     );
   }
 );
+FormGroup.displayName = "FormGroup";
 export default memo(FormGroup);

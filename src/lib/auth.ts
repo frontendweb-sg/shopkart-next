@@ -1,22 +1,23 @@
-export const login = async (credential: ISignin) => {
-  const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/signin", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(credential),
-  });
-  return response.json();
+import { Api } from "@/instance";
+import { authService } from "@/services/auth.services";
+
+/**
+ * Login user
+ * @param body
+ * @returns
+ */
+export const login = async (body: ILogin) => {
+  const response = await authService.login(body);
+  if (response.statusText !== "OK") throw new Error("something went wrong");
+  return response.data;
 };
 
-export const signup = async (body: ISingup) => {
-  const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/signup", {
-    method: "POST",
-    body: JSON.stringify(body),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-
-  return response;
+/**
+ * Register user
+ * @param body
+ * @returns
+ */
+export const signup = async (body: IRegister) => {
+  const response = await Api.post("/register", body);
+  return response.data;
 };

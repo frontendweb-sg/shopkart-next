@@ -8,4 +8,5 @@ const Form = forwardRef<HTMLFormElement, FormProps>(({ children, ...rest }, ref)
     </form>
   );
 });
+Form.displayName = "Form";
 export default Form;

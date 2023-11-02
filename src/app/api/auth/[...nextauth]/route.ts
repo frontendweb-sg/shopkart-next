@@ -1,5 +1,6 @@
 import { AuthError } from "@/errors/auth-error";
 import { login } from "@/lib/auth";
+import axios from "axios";
 import NextAuth from "next-auth";
 import CrdentialProvider from "next-auth/providers/credentials";
 
@@ -19,9 +20,10 @@ const handler = NextAuth({
         password: { type: "password", label: "Password", placeholder: "******" },
       },
       async authorize(credentials, req) {
-        const data = await login({
-          email: credentials?.email!,
-          password: credentials?.password!,
+        const { email, password } = credentials as { email: string; password: string };
+        const { data } = await axios.post(process.env.NEXTAUTH_URL + "/signin", {
+          email,
+          password,
         });
 
         if (data?.errors) {
@@ -38,7 +40,6 @@ const handler = NextAuth({
   ],
   callbacks: {
     async jwt({ token, user }) {
-      console.log("user", token);
       return { ...token, ...user };
     },
     async session({ session, token }) {
@@ -46,6 +47,9 @@ const handler = NextAuth({
       return session;
     },
   },
+  pages: {
+    signIn: "./login",
+  },
 });
 
-export { handler as GET, handler as POST, handler as AuthHandler };
+export { handler as GET, handler as POST };

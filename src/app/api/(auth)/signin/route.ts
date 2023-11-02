@@ -15,7 +15,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   await connectDb();
   try {
-    const body = (await req.json()) as ISignin;
+    const body = (await req.json()) as ILogin;
     console.log("body", body);
     const user = (await User.findOne({
       $or: [{ email: body.email }, { mobile: body.email }],

@@ -13,13 +13,11 @@ import { CustomError } from "@/errors/custom-errot";
 export async function POST(req: NextRequest) {
   await connectDb();
   try {
-    const body = (await req.json()) as ISingup;
+    const body = (await req.json()) as IRegister;
 
     const userExist = (await User.findOne({ email: body.email })) as IUserDoc;
     if (userExist) {
-      throw new BadRequestError(
-        "User already register with this email, please use another!"
-      );
+      throw new BadRequestError("User already register with this email, please use another!");
     }
 
     const user = new User(body) as IUserDoc;
