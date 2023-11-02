@@ -1,4 +1,6 @@
 import { Api } from "@/instance";
+import { ICategory } from "@/models/category";
+import { categoryService } from "@/services/category.services";
 
 const getCategories = async () => {
   try {
@@ -10,4 +12,9 @@ const getCategories = async () => {
   }
 };
 
-export { getCategories };
+const addCategory = async (values: ICategory) => {
+  const response = await categoryService.add(values);
+  return response.data;
+};
+
+export { getCategories, addCategory };
