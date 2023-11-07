@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import AuthHeader from "./Header";
 import Container from "@/components/common/Container";
 import Logo from "@/components/common/Logo";
+import Footer from "@/components/layouts/Footer";
 
 /**
  * Auth layout
@@ -14,6 +15,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
       <Container className="m-auto w-96 p-4 text-center">
         <Logo href="/" />
         <div className="mt-4">{children}</div>
+        <Footer />
       </Container>
     </div>
   );

@@ -1,13 +1,15 @@
 "use client";
 import Form from "@/components/common/Form";
 import Input from "@/components/common/Input";
+import Button from "@/components/common/Button";
+import Link from "next/link";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { FaEnvelope, FaKey } from "react-icons/fa";
 import { signIn, useSession } from "next-auth/react";
-import Link from "next/link";
 import { authService } from "@/services/auth.services";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const validation = yup.object().shape({
   email: yup.string().email("Invalid email").required("Email is required!"),
@@ -18,8 +20,10 @@ const validation = yup.object().shape({
  * @returns
  */
 const LoginForm = () => {
+  const router = useRouter();
   const { data: session } = useSession();
   const [error, setError] = useState<string | null>(null);
+
   const { values, touched, errors, handleBlur, handleChange, handleSubmit } = useFormik({
     initialValues: authService.getLoginObject(),
     validationSchema: validation,
@@ -30,14 +34,24 @@ const LoginForm = () => {
           ...values,
         });
         resetForm();
+        const user = session?.user;
+        if (user?.role === "admin") router.replace("/admin");
+        if (user?.role === "user") router.replace("/users");
       } catch (error) {
-        console.log("error", error);
         if (error instanceof Error) setError(error.message);
       } finally {
         setSubmitting(false);
       }
     },
   });
+
+  useEffect(() => {
+    if (session) {
+      const { role } = session.user;
+      if (role === "admin") router.replace("/admin");
+      if (role === "user") router.replace("/users");
+    }
+  }, [session, router]);
 
   return (
     <>
@@ -63,10 +77,13 @@ const LoginForm = () => {
           touched={touched}
           startEl={<FaKey />}
         />
-        <button type="submit">Login</button>
-        <div>
-          <p>
-            If you don&apos;t have an account, please click <Link href="/register">Register</Link>
+        <Button type="submit">Login</Button>
+        <div className="mt-4">
+          <p className="text-sm">
+            If you don&apos;t have an account, please click{" "}
+            <Link className="text-pink-500" href="/register">
+              Register
+            </Link>
           </p>
         </div>
       </Form>

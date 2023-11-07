@@ -9,11 +9,11 @@ export const PRODUCT_TABLE = "Product";
 export interface IProduct {
   title: string;
   slug: string;
-  category: ObjectId | ICategory;
+  category: ObjectId | ICategory | null;
   description: string;
   summary?: string;
-  images: string[];
-  attributes: ProductAttributes[];
+  images: string[] | null;
+  attributes: ProductAttributes[] | null;
   active: boolean;
   price: number;
 }

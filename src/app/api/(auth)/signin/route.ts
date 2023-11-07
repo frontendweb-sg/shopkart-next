@@ -34,17 +34,9 @@ export async function POST(req: NextRequest) {
       id: user.id,
       email: user.email,
     });
+    user.secretToken = token;
 
-    return NextResponse.json(
-      {
-        message: "Sign in successfull",
-        data: {
-          ...user.toJSON(),
-          secretToken: token,
-        },
-      },
-      { status: 200 }
-    );
+    return NextResponse.json(user, { status: 200 });
   } catch (error) {
     return errorHandler(error as CustomError);
   }

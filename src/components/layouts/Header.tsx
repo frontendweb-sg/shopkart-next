@@ -3,8 +3,8 @@ import Logo from "../common/Logo";
 
 const Header = () => {
   return (
-    <header className="bg-white p-4 border-b">
-      <div className="w-5/6 m-auto flex justify-between">
+    <header className="relative z-20 w-full h-16 sm:h-20 lg:h-16  items-center is-scrolling">
+      <div className="w-5/6 m-auto min-h-full items-center  flex justify-between">
         <Logo href="/" />
         <div className="flex">
           <ul className="flex">

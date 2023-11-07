@@ -14,20 +14,28 @@ const Layout = async ({ children }: { children: ReactNode }) => {
   return (
     <>
       <Header />
-      <div className="flex w-5/6 p-4  m-auto mt-3">
-        <aside className="w-64 p-4 bg-slate-50">
-          {categories.map((cat: ICategoryDoc) => {
-            return (
-              <div key={cat.id} className="mb-2 block">
-                <Link href={"/products?category=" + encodeURIComponent(cat.title.toLowerCase())}>
-                  {cat.title}
-                </Link>
+      <main className="relative flex-grow">
+        <div className="mx-auto max-w-[1920px] px-4 md:px-8 2xl:px-16">
+          <div className="flex pt-8 pb-16 lg:pb-20">
+            <aside className="flex-shrink-0 ltr:pr-24 rtl:pl-24 hidden lg:block w-96">
+              <div className="position: relative; top: 0px;">
+                {categories.map((cat: ICategoryDoc) => {
+                  return (
+                    <div key={cat.id} className="mb-2 block">
+                      <Link
+                        href={"/products?category=" + encodeURIComponent(cat.title.toLowerCase())}
+                      >
+                        {cat.title}
+                      </Link>
+                    </div>
+                  );
+                })}
               </div>
-            );
-          })}
-        </aside>
-        {children}
-      </div>
+            </aside>
+            <div className="w-full ltr:lg:-ml-9 rtl:lg:-mr-9">{children}</div>
+          </div>
+        </div>
+      </main>
     </>
   );
 };

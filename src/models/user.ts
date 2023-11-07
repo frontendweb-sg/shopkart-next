@@ -11,7 +11,7 @@ export interface IUser {
   active: string;
   emailVerify: boolean;
   refereshToken?: boolean;
-  secretToken?: boolean;
+  secretToken?: string;
 }
 export interface IUserDoc extends Document<IUser>, IUser {}
 const schema = new Schema(
@@ -52,5 +52,4 @@ schema.pre("save", function cb(done) {
   done();
 });
 
-export const User =
-  mongoose.models[USER_TABLE] || mongoose.model<IUserDoc>(USER_TABLE, schema);
+export const User = mongoose.models[USER_TABLE] || mongoose.model<IUserDoc>(USER_TABLE, schema);

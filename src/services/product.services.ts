@@ -7,15 +7,18 @@ const SERVICE_API_URL = "/product";
 class ProductService implements ApiService<IProductDoc, IProduct> {
   getInitialObject() {
     return {
+      category: null,
       title: "",
       slug: "",
       description: "",
       summary: "",
       price: 0,
       images: null,
+      attributes: null,
+      active: true,
     };
   }
-  getAll(): Promise<AxiosResponse<IProductDoc[], any>> {
+  getAll(query?: string): Promise<AxiosResponse<IProductDoc[], any>> {
     return Api.get(SERVICE_API_URL);
   }
   getById(id: string): Promise<AxiosResponse<IProductDoc, any>> {

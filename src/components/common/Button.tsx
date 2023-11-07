@@ -19,9 +19,9 @@ const buttonMaps = {
  * Button components
  */
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ color, size, variant, children, className, ...rest }, ref) => {
+  ({ color = "primary", size, variant, children, className, ...rest }, ref) => {
     const classes = classNames(
-      "px-6 py-2",
+      "px-6 py-2 rounded-md",
       buttonMaps[color as keyof typeof buttonMaps],
       className
     );

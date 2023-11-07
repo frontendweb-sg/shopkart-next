@@ -14,7 +14,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en">
       <body className={roboto.className}>
-        <AuthProvider session={session!}>{children}</AuthProvider>
+        <div className="flex flex-col min-h-screen">
+          <AuthProvider session={session!}>{children}</AuthProvider>
+        </div>
       </body>
     </html>
   );

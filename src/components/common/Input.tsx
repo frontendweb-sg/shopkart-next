@@ -12,7 +12,19 @@ export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
 };
 const Input = forwardRef<HTMLInputElement, InputProps>(
   (
-    { parentProps, label, errors, touched, value, name, className, startEl, endEl, ...rest },
+    {
+      parentProps,
+      placeholder,
+      label,
+      errors,
+      touched,
+      value,
+      name,
+      className,
+      startEl,
+      endEl,
+      ...rest
+    },
     ref
   ) => {
     const error =
@@ -30,11 +42,12 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           {startEl}
           <input
             className={classNames(
-              "w-full block rounded-md py-2 hover:bg-slate-50 focus:outline-none",
+              "w-full bg-inherit hover:bg-inherit block rounded-md py-2 hover:bg-slate-50 focus:outline-none",
               {
                 "pl-4": !!startEl,
               }
             )}
+            placeholder={placeholder ?? label}
             ref={ref}
             value={value}
             name={name}
