@@ -15,11 +15,11 @@ export type LinkItemProps = LinkProps &
  * @returns
  */
 const LinkItem = ({ parentProps, menu, href, className, children, ...rest }: LinkItemProps) => {
-  const classes = classNames("block", className);
+  const classes = classNames(className);
 
   if (menu) {
     return (
-      <li className={classNames("ml-2", parentProps?.className)} {...parentProps}>
+      <li className={classNames(parentProps?.className)} {...parentProps}>
         <Link className={classes} href={href} {...rest}>
           {children}
         </Link>
@@ -28,7 +28,7 @@ const LinkItem = ({ parentProps, menu, href, className, children, ...rest }: Lin
   }
 
   return (
-    <Link href={href} {...rest}>
+    <Link href={href} {...rest} className={classes}>
       {children}
     </Link>
   );

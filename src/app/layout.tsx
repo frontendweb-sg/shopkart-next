@@ -4,7 +4,7 @@ import { getServerSession } from "next-auth";
 import { roboto } from "@/utils/fonts";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "./globals.scss";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,10 +16,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en">
       <body className={roboto.className}>
-        <div className="flex flex-col min-h-screen">
-          <ToastContainer />
-          <AuthProvider session={session!}>{children}</AuthProvider>
-        </div>
+        <ToastContainer />
+        <AuthProvider session={session!}>{children}</AuthProvider>
       </body>
     </html>
   );

@@ -19,6 +19,7 @@ const Page = async () => {
   ];
   return (
     <div>
+      hello
       <CategoryList>
         <DataTable rows={categories} columns={COLUMNS as any} />
       </CategoryList>

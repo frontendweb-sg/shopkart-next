@@ -1,7 +1,6 @@
-import { Suspense, type ReactNode } from "react";
-import Sidebar from "./components/Sidebar";
-import Header from "./components/Header";
-import Error from "./error";
+import { type ReactNode } from "react";
+import Sidebar from "@/components/admin/Sidebar";
+import AdminHeader from "@/components/admin/Header";
 
 /**
  * Admin layout
@@ -10,11 +9,11 @@ import Error from "./error";
  */
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="flex min-h-screen">
+    <div className="h-screen bg-gray-50 flex flex-row flex-wrap">
       <Sidebar />
-      <div className="bg-slate-100 flex-1">
-        <Header />
-        <div className="p-4">{children}</div>
+      <div className="bg-gray-100 flex-1">
+        <AdminHeader />
+        <div className="flex-1  p-6">{children}</div>
       </div>
     </div>
   );

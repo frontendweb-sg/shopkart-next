@@ -18,7 +18,7 @@ const UserControl = () => {
   return (
     <div className="relative">
       <div className="flex items-center p-2" onClick={() => setOpen((prev) => !prev)}>
-        <Image src="/avatar.png" width={35} height={35} alt="Avatar" />
+        <Image src="/avatar.png" width={30} height={30} alt="Avatar" />
         <label className="ml-2 text-sm font-medium text-orange-700">{session?.user.name}</label>
       </div>
       <div
