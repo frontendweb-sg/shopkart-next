@@ -9,7 +9,7 @@ class AuthService {
       password: "Admin@12345",
     };
   }
-  getRegisterObject() {
+  getSignupObject() {
     return {
       name: "",
       email: "",
@@ -21,8 +21,8 @@ class AuthService {
   login(body: ILogin): Promise<AxiosResponse<IUserDoc>> {
     return Api.post("/login", body);
   }
-  register(body: IRegister): Promise<AxiosResponse<IUserDoc>> {
-    return Api.post("/register", body);
+  signup(body: IRegister): Promise<AxiosResponse<IUserDoc | IError>> {
+    return Api.post("/signup", body);
   }
 }
 

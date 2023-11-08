@@ -10,14 +10,6 @@ import Footer from "@/components/layouts/Footer";
  * @returns
  */
 const Layout = ({ children }: { children: ReactNode }) => {
-  return (
-    <div className="bg-slate-100 min-h-screen p-4 flex items-center">
-      <Container className="m-auto w-96 p-4 text-center">
-        <Logo href="/" />
-        <div className="mt-4">{children}</div>
-        <Footer />
-      </Container>
-    </div>
-  );
+  return <div className="flex items-center">{children}</div>;
 };
 export default Layout;

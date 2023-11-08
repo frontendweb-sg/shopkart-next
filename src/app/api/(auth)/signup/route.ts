@@ -4,7 +4,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { Error } from "mongoose";
 import { BadRequestError } from "@/errors/bad-request-error";
 import { errorHandler } from "@/middleware/error-handler";
-import { CustomError } from "@/errors/custom-errot";
+import { CustomError } from "@/errors/custom-error";
+import { ValidationError } from "@/errors/validation-error";
 /**
  * User sign-up api
  * @param req
@@ -14,6 +15,7 @@ export async function POST(req: NextRequest) {
   await connectDb();
   try {
     const body = (await req.json()) as IRegister;
+    console.log("body", body);
 
     const userExist = (await User.findOne({ email: body.email })) as IUserDoc;
     if (userExist) {

@@ -1,5 +1,5 @@
 import { BadRequestError } from "@/errors/bad-request-error";
-import { CustomError } from "@/errors/custom-errot";
+import { CustomError } from "@/errors/custom-error";
 import { connectDb } from "@/lib/db";
 import { errorHandler } from "@/middleware/error-handler";
 import { IProduct, IProductDoc, Product } from "@/models/product";
@@ -22,9 +22,7 @@ export async function GET(req: NextRequest, { params }: IParams) {
     const productId = params.productId;
     console.log("p", productId);
 
-    const product = (await Product.findById(productId).populate(
-      "category"
-    )) as IProductDoc;
+    const product = (await Product.findById(productId).populate("category")) as IProductDoc;
     if (!product) throw new BadRequestError("Product is not exist!");
 
     return NextResponse.json(product, { status: 200 });

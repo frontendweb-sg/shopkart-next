@@ -34,7 +34,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 
     const classes = classNames(
       "border text-slate-800 hover:text-sky-600 border-slate-300 border-solid rounded-md hover:border-slate-400 flex items-center px-4",
-      className
+      className,
+      {
+        "border-red-600": !!error,
+        "text-red-500": !!error,
+      }
     );
     return (
       <FormGroup label={label} {...parentProps}>
@@ -55,7 +59,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           />
           {endEl}
         </div>
-        {error && <span>{error}</span>}
+        {error && <span className="text-red-500 mt-1 text-xs block">{error}</span>}
       </FormGroup>
     );
   }

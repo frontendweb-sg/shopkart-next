@@ -1,14 +1,21 @@
+import classNames from "classnames";
 import Link from "next/link";
 
-export type FooterProps = React.HtmlHTMLAttributes<HTMLElement> & {};
-const Footer = (props: FooterProps) => {
+export type FooterProps = React.HtmlHTMLAttributes<HTMLElement> & {
+  theme?: "light" | "dark";
+  textSize?: Size;
+};
+const Footer = ({ theme, textSize = "sm", ...rest }: FooterProps) => {
   return (
     <div
-      className="w-full absolute bottom-0 m-auto left-0 right-0 py-5 px-3 border-t border-slate-200 mt-4 text-center"
-      {...props}
+      className={classNames(
+        "w-full absolute bottom-0 m-auto left-0 right-0 py-5 px-3mt-4 text-center",
+        theme === "light" ? "text-white" : "text-slate-800"
+      )}
+      {...rest}
     >
       <div className="text-center">
-        <p className="text-sm flex justify-center">
+        <p className={classNames("flex justify-center", `text-${textSize}`)}>
           &copy; {new Date().getFullYear()}, All rights reserved. powered by{" "}
           <Link className="inline-block ml-2 text-pink-500" href="https://www.frontendweb.in">
             FrontendWeb

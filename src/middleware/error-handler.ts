@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { Error } from "mongoose";
-import { CustomError } from "@/errors/custom-errot";
-import { BadRequestError } from "@/errors/bad-request-error";
+import { CustomError } from "@/errors/custom-error";
+import { ValidationError } from "@/errors/validation-error";
 
 /**
  * Error handerl
@@ -9,6 +9,9 @@ import { BadRequestError } from "@/errors/bad-request-error";
  * @returns
  */
 export const errorHandler = (error: CustomError) => {
-  console.log(error.message);
+  if (error instanceof Error.ValidationError) {
+    error = new ValidationError(error);
+  }
+  console.log("Error", error);
   return NextResponse.json({ errors: error.renderError() }, { status: error.status });
 };

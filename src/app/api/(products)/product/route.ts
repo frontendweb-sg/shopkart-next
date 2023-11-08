@@ -1,5 +1,5 @@
 import { BadRequestError } from "@/errors/bad-request-error";
-import { CustomError } from "@/errors/custom-errot";
+import { CustomError } from "@/errors/custom-error";
 import { connectDb } from "@/lib/db";
 import { errorHandler } from "@/middleware/error-handler";
 import { IProduct, IProductDoc, Product } from "@/models/product";

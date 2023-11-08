@@ -1,5 +1,5 @@
 import { AuthError } from "@/errors/auth-error";
-import { CustomError } from "@/errors/custom-errot";
+import { CustomError } from "@/errors/custom-error";
 import { connectDb } from "@/lib/db";
 import { errorHandler } from "@/middleware/error-handler";
 import { IUserDoc, User } from "@/models/user";
@@ -38,6 +38,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(user, { status: 200 });
   } catch (error) {
+    console.log(error);
     return errorHandler(error as CustomError);
   }
 }

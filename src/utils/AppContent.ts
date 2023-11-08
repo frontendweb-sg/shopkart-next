@@ -1,0 +1,17 @@
+export const AppContent = {
+  profile: "Profile",
+  settings: "Settings",
+  logout: "Logout",
+  singIn: "Sign in",
+  signUp: "Sign up",
+  resetPassword: "Reset password",
+  forgotPassword: "Forgot password",
+  changePassword: "Change password",
+  submit: "Submit",
+  add: "Add",
+  save: "Save",
+  delete: "Delete",
+  update: "Update",
+  login: "Login",
+  signUpText: "If you have an account, please click",
+};

@@ -1,10 +1,10 @@
-import { CustomError } from "./custom-errot";
+import { CustomError } from "./custom-error";
 
 export class BadRequestError extends CustomError {
   status: number = 400;
 
-  constructor(public msg?: string) {
-    super(msg);
+  constructor(public message: string) {
+    super(message);
     Object.setPrototypeOf(this, BadRequestError.prototype);
   }
   renderError(): IError {
@@ -12,7 +12,6 @@ export class BadRequestError extends CustomError {
       message: this.message,
       status: this.status,
       field: this.name,
-      info: null,
     };
   }
 }

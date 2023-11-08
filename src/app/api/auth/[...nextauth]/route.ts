@@ -21,11 +21,18 @@ const handler = NextAuth({
       },
       async authorize(credentials, req) {
         const { email, password } = credentials as { email: string; password: string };
-        const { data } = await axios.post(process.env.NEXTAUTH_URL + "/signin", {
-          email,
-          password,
+        const response = await fetch(process.env.NEXTAUTH_URL + "/signin", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            password,
+          }),
         });
 
+        const data = await response.json();
         if (data?.errors) {
           throw new AuthError(data.errors.message);
         }
