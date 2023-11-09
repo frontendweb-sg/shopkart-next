@@ -1,6 +1,9 @@
 name: Vercel preview Deployment
 
 on:
+  pull_request:
+    branches:
+      - main
   push:
     branches:
       - main

@@ -16,7 +16,6 @@ export type LinkItemProps = LinkProps &
  */
 const LinkItem = ({ parentProps, menu, href, className, children, ...rest }: LinkItemProps) => {
   const classes = classNames(className);
-
   if (menu) {
     return (
       <li className={classNames(parentProps?.className)} {...parentProps}>

@@ -20,4 +20,5 @@ const Typography = forwardRef(
   }
 );
 
+Typography.displayName = "Typography";
 export default Typography;

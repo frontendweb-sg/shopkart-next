@@ -1,29 +1,35 @@
 import DataTable from "@/components/common/DataTable";
+import Panel from "@/components/common/Panel";
+import QuerySearch from "@/components/common/QuerySearch";
+import CategoryList from "./CategoryList";
 import PageTitle from "@/components/common/PageTitle";
 import { getCategories } from "@/lib/category";
 import { ICategoryDoc } from "@/models/category";
-import CategoryList from "./CategoryList";
+import Breadcrumbs from "@/components/common/Breadcrumbs";
+import ExampleClientComponent from "../abs";
 
 /**
  * Category apge
  * @returns
  */
-export const revalidate = 60;
 const Page = async () => {
   const categories = (await getCategories()) as ICategoryDoc[];
-  console.log("HI fire every 60 seconds");
+
   const COLUMNS = [
-    // { field: "id", headerName: "Id" },
     { field: "title", headerName: "Title" },
     { field: "description", headerName: "Description" },
   ];
+
   return (
-    <div>
-      hello
-      <CategoryList>
-        <DataTable rows={categories} columns={COLUMNS as any} />
-      </CategoryList>
-    </div>
+    <>
+      <PageTitle label="Category" tagline="Welcome to category"></PageTitle>
+      <Panel>
+        <CategoryList>
+          <QuerySearch />
+          <DataTable rows={categories} columns={COLUMNS as any} />
+        </CategoryList>
+      </Panel>
+    </>
   );
 };
 

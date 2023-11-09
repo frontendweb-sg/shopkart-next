@@ -14,7 +14,7 @@ import { signOut } from "next-auth/react";
 const Sidebar = () => {
   const pathname = usePathname();
   return (
-    <aside className="w-64 border-r relative flex flex-wrap bg-white border-gray-300 p-5 flex-none animated faster">
+    <aside className="w-64 border-r relative flex flex-wrap bg-white border-gray-200 p-5 flex-none animated faster">
       <div className="w-full">
         <Logo className="border-b pb-4 mb-4" href="/admin" />
         <div className="relative">

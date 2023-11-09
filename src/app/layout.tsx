@@ -4,7 +4,7 @@ import { getServerSession } from "next-auth";
 import { roboto } from "@/utils/fonts";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "./globals.css";
+import "./globals.scss";
 
 export const metadata: Metadata = {
   title: "Create Next App",

@@ -65,14 +65,14 @@ const LoginForm = () => {
     return () => {
       setMessage("");
     };
-  }, [session, router]);
+  }, [session, params, router]);
 
   return (
     <div className="mx-auto md:w-2/4">
       <div className="mb-6">
         <h1 className="text-2xl font-medium text-rose-600">Sign in</h1>
         <p className="text-xs mt-1 text-slate-600">
-          If you don't have an account, please click{" "}
+          If you don&apos;t have an account, please click{" "}
           <Link className="text-rose-600" href="/register">
             Register
           </Link>

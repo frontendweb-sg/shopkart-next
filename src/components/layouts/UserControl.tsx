@@ -5,20 +5,19 @@ import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useState } from "react";
 import LinkItem from "../common/LinkItem";
-import { usePathname, useSelectedLayoutSegment } from "next/navigation";
 import { AppContent } from "@/utils/AppContent";
+import useOutsideClick from "@/hooks/useOutsideClick";
 
 const UserControl = () => {
   const [open, setOpen] = useState(false);
-  const pathname = usePathname();
-  const segment = useSelectedLayoutSegment();
   const { data: session, status } = useSession();
 
-  console.log("s", pathname, segment);
+  const itemRef = useOutsideClick<HTMLDivElement>(() => setOpen(false));
+
   return (
-    <div className="relative">
+    <div className="relative" ref={itemRef}>
       <div className="flex items-center p-2" onClick={() => setOpen((prev) => !prev)}>
-        <Image src="/avatar.png" width={30} height={30} alt="Avatar" />
+        <Image priority src="/avatar.png" width={30} height={30} alt="Avatar" />
         <label className="ml-2 text-sm font-medium text-orange-700">{session?.user.name}</label>
       </div>
       <div
