@@ -15,8 +15,6 @@ export async function POST(req: NextRequest) {
   await connectDb();
   try {
     const body = (await req.json()) as IRegister;
-    console.log("body", body);
-
     const userExist = (await User.findOne({ email: body.email })) as IUserDoc;
     if (userExist) {
       throw new BadRequestError("User already register with this email, please use another!");

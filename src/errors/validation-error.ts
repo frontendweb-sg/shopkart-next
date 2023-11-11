@@ -7,7 +7,7 @@ export class ValidationError extends CustomError {
 
   constructor(public error: Error.ValidationError) {
     super(error.message);
-    console.log("e", error);
+
     Object.setPrototypeOf(this, ValidationError.prototype);
   }
 

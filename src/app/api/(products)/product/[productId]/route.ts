@@ -20,7 +20,6 @@ export async function GET(req: NextRequest, { params }: IParams) {
   await connectDb();
   try {
     const productId = params.productId;
-    console.log("p", productId);
 
     const product = (await Product.findById(productId).populate("category")) as IProductDoc;
     if (!product) throw new BadRequestError("Product is not exist!");

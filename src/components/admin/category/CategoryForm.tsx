@@ -59,7 +59,6 @@ const CategoryForm = ({ onClose, category }: { onClose?: () => void; category?: 
     },
   });
 
-  console.log("values", values);
   const enabled = isSubmitting || !(dirty && isValid);
   return (
     <Form onSubmit={handleSubmit}>
