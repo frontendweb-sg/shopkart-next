@@ -23,5 +23,6 @@ const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
     );
   }
 );
+TableCell.displayName = "TableCell";
 
 export default TableCell;

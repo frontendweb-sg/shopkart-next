@@ -49,4 +49,6 @@ export const DropdownItem = <T extends React.ElementType = "button">(props: BoxP
     />
   );
 };
+
+Dropdown.displayName = "Dropdown";
 export default Dropdown;

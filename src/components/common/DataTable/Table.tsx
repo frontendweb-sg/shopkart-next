@@ -14,4 +14,5 @@ const Table = forwardRef<HTMLTableElement, TableProps>(({ children, className, .
   );
 });
 
+Table.displayName = "Table";
 export default Table;
