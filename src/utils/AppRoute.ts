@@ -6,6 +6,7 @@ export const AppRoute = {
   users: "/users",
   adminDashboard: "/admin/dashboard",
   adminCategory: "/admin/category",
+  adminCategoryEdit: "/admin/category/edit-category",
   adminProducts: "/admin/products",
   adminColor: "/admin/colors",
   adminSize: "/admin/sizes",

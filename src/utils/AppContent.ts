@@ -1,4 +1,7 @@
 export const AppContent = {
+  brand: "ShopKart",
+  cancel: "Cancel",
+  ok: "Ok",
   profile: "Profile",
   settings: "Settings",
   logout: "Logout",

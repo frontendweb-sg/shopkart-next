@@ -5,7 +5,7 @@ declare module NodeJS {
     NEXT_PUBLIC_API_URL: string;
   }
 }
-
+type Align = "left" | "center" | "right" | "justify";
 type Size = "xs" | "sm" | "md" | "lg" | "xl" | "block";
 type Color = "primary" | "secondary" | "info" | "warning" | "success" | "danger" | "text";
 type ButtonVariant = "filled" | "outlined" | "text";
@@ -44,3 +44,24 @@ interface IRegister {
 }
 
 type DocVisibility = "active" | "inactive";
+
+type ColumnDefination<T, K extends keyof T> = {
+  field: K;
+  headerName?: string;
+  style?: React.CSSProperties;
+  width?: string;
+  align?: Align;
+  renderValue?: (row: T, column: ColumnDefination<T, K>, index: number) => string;
+  renderCell?: (row: T, column: ColumnDefination<T, K>, index: number) => React.ReactElement;
+};
+
+type TableProps<T, K extends keyof T> = {
+  rows: T[];
+  columns: Array<ColumnDefination<T, K>>;
+};
+
+type SelectProps<T> = {
+  options: T[];
+  defaultValue: T;
+  getOptionLabel?: (option: T) => string;
+};

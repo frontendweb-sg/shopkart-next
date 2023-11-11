@@ -7,7 +7,7 @@ const FormGroup = forwardRef<HTMLDivElement, FormGroupProps>(
     const classes = classNames("mb-3", className);
     return (
       <div className={classes} ref={ref} {...rest}>
-        {label && <label className="mb-2 block">{label}</label>}
+        {label && <label className="mb-2 block text-xs font-light">{label}</label>}
         {children}
       </div>
     );

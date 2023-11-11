@@ -1,21 +1,37 @@
+import classNames from "classnames";
 import { FaTimes } from "react-icons/fa";
 export type ModalProps = React.HtmlHTMLAttributes<HTMLDivElement> & {
   open?: boolean;
   onClose?: () => void;
   label?: string;
+  size?: Size;
 };
-const Modal = ({ label, open, onClose, children, ...rest }: ModalProps) => {
+const Modal = ({ size = "sm", label, open, onClose, children, ...rest }: ModalProps) => {
   if (!open) return null;
   return (
-    <div className="absolute top-0 left-0 right-0 bottom-0 m-auto flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-      <div className="p-4 relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-        <div className="flex items-center relative border-b border-slate-200 pb-3 mb-4">
-          <h6>{label}</h6>
-          <button onClick={onClose} className="absolute top-0 right-0">
+    <div
+      onClick={onClose}
+      className={classNames(
+        "fixed inset-0 z-50 flex justify-center items-center transition-colors",
+        open ? "visible bg-black/20" : "invisible"
+      )}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className={classNames(
+          "bg-white  modal transition-all p-4  shadow rounded-md",
+          `modal-${size}`
+        )}
+      >
+        <div className="flex border-b pb-2 items-center relative">
+          <h6 className="before:w-1 before:-ml-4 before:content before:bg-rose-600 before:h-6 before:absolute">
+            {label}
+          </h6>
+          <button onClick={onClose} className="absolute top-0 right-0 hover:text-rose-600">
             <FaTimes />
           </button>
         </div>
-        <div>{children}</div>
+        <div className="pt-3">{children}</div>
       </div>
     </div>
   );

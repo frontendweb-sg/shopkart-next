@@ -1,6 +1,4 @@
-"use client";
 import classNames from "classnames";
-import { usePathname, useSelectedLayoutSegment, useSelectedLayoutSegments } from "next/navigation";
 import { forwardRef, memo } from "react";
 
 export type PageTitleProps = React.HtmlHTMLAttributes<HTMLDivElement> & {
@@ -10,10 +8,6 @@ export type PageTitleProps = React.HtmlHTMLAttributes<HTMLDivElement> & {
 
 const PageTitle = forwardRef<HTMLDivElement, PageTitleProps>(
   ({ children, label, tagline, ...rest }, ref) => {
-    const segments = useSelectedLayoutSegments();
-    const segment = useSelectedLayoutSegment();
-    const pathname = usePathname();
-    console.log(segments, segment, pathname);
     return (
       <div className={classNames("flex items-center justify-between mb-3")} ref={ref} {...rest}>
         <h6>

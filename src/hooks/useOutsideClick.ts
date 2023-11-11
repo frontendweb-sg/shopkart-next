@@ -5,11 +5,11 @@ export default function useOutsideClick<T extends HTMLDivElement>(cb: Function) 
 
   useEffect(() => {
     const handler = (ev: MouseEvent) => {
-      if (itemRef.current && !(ev.target as Node).contains(itemRef.current)) {
+      if (itemRef.current && !itemRef.current.contains(ev.target as Node)) {
         cb();
       }
     };
-    document.addEventListener("click", handler, { capture: true });
+    document.addEventListener("click", handler);
     return () => {
       document.removeEventListener("click", handler);
     };

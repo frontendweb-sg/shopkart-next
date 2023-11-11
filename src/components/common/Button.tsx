@@ -11,10 +11,13 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
  * Button components
  */
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ color = "primary", size, variant, children, className, ...rest }, ref) => {
-    const classes = classNames("btn", className, `btn-${color}`);
+  (
+    { type = "button", color = "primary", size = "xs", variant, children, className, ...rest },
+    ref
+  ) => {
+    const classes = classNames("btn", className, `btn-${color} btn-${size}`);
     return (
-      <button ref={ref} className={classes} {...rest}>
+      <button type={type} ref={ref} className={classes} {...rest}>
         {children}
       </button>
     );

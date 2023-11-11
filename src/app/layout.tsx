@@ -5,6 +5,7 @@ import { roboto } from "@/utils/fonts";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.scss";
+import Confirmation from "@/components/common/Confirmation";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,8 +17,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en">
       <body className={roboto.className}>
-        <ToastContainer />
-        <AuthProvider session={session!}>{children}</AuthProvider>
+        <AuthProvider session={session!}>
+          <ToastContainer />
+          <Confirmation />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

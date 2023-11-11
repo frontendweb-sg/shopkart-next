@@ -21,7 +21,7 @@ const handler = NextAuth({
       },
       async authorize(credentials, req) {
         const { email, password } = credentials as { email: string; password: string };
-        const response = await fetch(process.env.NEXTAUTH_URL + "/signin", {
+        const response = await fetch(process.env.VERCEL_URL + "/api/signin", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

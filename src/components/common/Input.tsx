@@ -33,11 +33,13 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         : null;
 
     const classes = classNames(
-      "border text-slate-800 hover:text-sky-600 border-slate-300 border-solid rounded-md hover:border-slate-400 flex items-center px-4",
+      "border text-sm border-solid rounded-md flex items-center px-4",
       className,
+      error
+        ? "border-rose-600 text-red-500 placeholder-red-600::placeholder"
+        : "border-gray-200 hover:border-slate-400",
       {
-        "border-red-600": !!error,
-        "text-red-500": !!error,
+        "": !!error,
       }
     );
     return (
