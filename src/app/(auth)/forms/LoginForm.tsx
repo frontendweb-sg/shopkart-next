@@ -58,6 +58,7 @@ const LoginForm = () => {
     if (session) {
       const url = params.get("callbackUrl");
       const { role } = session.user;
+      console.log("url", url);
       if (role === "admin") router.replace(url ?? "/admin");
       if (role === "user") router.replace(url ?? "/users");
     }
@@ -67,6 +68,7 @@ const LoginForm = () => {
     };
   }, [session, params, router]);
 
+  console.log("session", session);
   return (
     <div className="mx-auto md:w-2/4">
       <div className="mb-6">

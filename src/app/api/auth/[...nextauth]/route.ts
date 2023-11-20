@@ -33,6 +33,7 @@ const handler = NextAuth({
         });
 
         const data = await response.json();
+
         if (data?.errors) {
           throw new AuthError(data.errors.message);
         }
@@ -50,7 +51,10 @@ const handler = NextAuth({
       return { ...token, ...user };
     },
     async session({ session, token }) {
-      session.user = token as any;
+      if (session.user) {
+        session.user = token as any;
+      }
+
       return session;
     },
   },
