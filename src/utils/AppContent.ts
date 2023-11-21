@@ -21,4 +21,5 @@ export const AppContent = {
   addCategory: "Add Category",
   product: "Product",
   products: "Products",
+  addToCart: "Add to cart",
 };

@@ -17,7 +17,7 @@ export default async function Home() {
       <main className="relative flex-grow">
         <div className="mx-auto max-w-[1920px] px-4 md:px-8 2xl:px-16">
           <Hero />
-          <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-x-3 lg:gap-x-5 xl:gap-x-7 gap-y-3 xl:gap-y-5 2xl:gap-y-8 ">
+          {/* <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-x-3 lg:gap-x-5 xl:gap-x-7 gap-y-3 xl:gap-y-5 2xl:gap-y-8 ">
             {categories.map((cat: ICategoryDoc) => (
               <Link
                 href={`/products/${cat.slug}`}
@@ -28,13 +28,13 @@ export default async function Home() {
               </Link>
             ))}
           </div>
+           */}
           <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-x-3 lg:gap-x-5 xl:gap-x-7 gap-y-3 xl:gap-y-5 2xl:gap-y-8 ">
             {products.map((product: IProductDoc) => (
               <Product key={product.id} product={product} />
             ))}
           </div>
         </div>
-        <h1>HOme page</h1> {JSON.stringify(categories)}
       </main>
     </>
   );

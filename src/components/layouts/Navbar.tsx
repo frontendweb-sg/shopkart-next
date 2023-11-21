@@ -2,12 +2,16 @@
 import { useSession } from "next-auth/react";
 import LinkItem from "../common/LinkItem";
 import UserControl from "./UserControl";
+import CartIcon from "../cart/CartIcon";
 const Navbar = () => {
   const { data: session } = useSession();
   return (
     <nav className="flex items-center">
       {session ? (
-        <UserControl />
+        <>
+          <UserControl />
+          <CartIcon />
+        </>
       ) : (
         <ul className="flex items-center gap-5 mr-4">
           <LinkItem href="/products">Products</LinkItem>

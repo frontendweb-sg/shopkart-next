@@ -18,20 +18,32 @@ export interface IProduct {
   price: number;
 }
 export interface IProductDoc extends Document<IProduct>, IProduct {}
-const schema = new Schema({
-  category: { type: Schema.ObjectId, ref: CATEGORY_TABLE, required: true },
-  title: { type: String, required: true, trim: true },
-  slug: { type: String, required: true, trim: true },
-  description: { type: String, default: "", maxLength: 250 },
-  summary: { type: String, default: "" },
-  images: [String],
-  attributes: [
-    {
-      name: { type: String },
-      value: { type: String },
+const schema = new Schema(
+  {
+    category: { type: Schema.ObjectId, ref: CATEGORY_TABLE, required: true },
+    title: { type: String, required: true, trim: true },
+    slug: { type: String, required: true, trim: true },
+    description: { type: String, default: "", maxLength: 250 },
+    summary: { type: String, default: "" },
+    images: [String],
+    attributes: [
+      {
+        name: { type: String },
+        value: { type: String },
+      },
+    ],
+    price: { type: Number, default: 0 },
+    active: { type: Boolean, default: true },
+  },
+  {
+    timestamps: true,
+    toJSON: {
+      transform(doc, ret) {
+        delete ret.__v;
+        doc.id = ret._id;
+        ret.id = ret._id;
+      },
     },
-  ],
-  price: { type: Number, default: 0 },
-  active: { type: Boolean, default: true },
-});
+  }
+);
 export const Product = models[PRODUCT_TABLE] || model<IProductDoc>(PRODUCT_TABLE, schema);

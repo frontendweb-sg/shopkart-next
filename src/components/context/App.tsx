@@ -1,21 +1,33 @@
+import useCart, { ICartProps } from "@/hooks/useCart";
 import useConfirmation, { IConfirmation } from "@/hooks/useConfirmation";
 import { ReactNode, createContext, useContext, useMemo } from "react";
 
 type AppState = {
+  cart: ICartProps;
   confirm: IConfirmation;
   onCancelConfirmation: () => void;
   onConfirmation: (confirm: IConfirmation) => void;
+  addItemToCart: (item: any) => void;
+  decreaseQty: (item: any) => void;
+  deleteItemFromCart: (item: any) => void;
+  increaseQty: (item: any) => void;
 };
 export const AppContext = createContext<AppState | null>(null);
 const AppProvider = ({ children }: { children: ReactNode }) => {
+  const { cart, addItemToCart, decreaseQty, deleteItemFromCart, increaseQty } = useCart();
   const { confirm, onCancelConfirmation, onConfirmation } = useConfirmation();
   const state = useMemo(
     () => ({
+      cart,
       confirm,
       onCancelConfirmation,
       onConfirmation,
+      addItemToCart,
+      decreaseQty,
+      deleteItemFromCart,
+      increaseQty,
     }),
-    [confirm, onCancelConfirmation, onConfirmation]
+    [confirm, cart, onCancelConfirmation, onConfirmation]
   );
 
   return <AppContext.Provider value={state}>{children}</AppContext.Provider>;

@@ -70,3 +70,11 @@ type SelectProps<T> = {
   getOptionValue?: (option: T) => React.ReactNode;
   isMulti?: boolean;
 };
+
+type ICart = {
+  id: string;
+  productId: string;
+  productName: string;
+  price: number;
+  qty?: number;
+};
