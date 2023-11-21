@@ -17,4 +17,8 @@ export const AppContent = {
   update: "Update",
   login: "Login",
   signUpText: "If you have an account, please click",
+  addProduct: "Add Product",
+  addCategory: "Add Category",
+  product: "Product",
+  products: "Products",
 };

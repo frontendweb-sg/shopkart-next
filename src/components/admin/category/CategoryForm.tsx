@@ -3,12 +3,12 @@ import Button from "@/components/common/Button";
 import Form from "@/components/common/Form";
 import Input from "@/components/common/Input";
 import Textarea from "@/components/common/Textarea";
+import { useRouter } from "next/navigation";
 import { addCategory, updateCategory } from "@/lib/category";
 import { ICategory, ICategoryDoc } from "@/models/category";
 import { categoryService } from "@/services/category.services";
 import { AppContent } from "@/utils/AppContent";
 import { useFormik } from "formik";
-import { startTransition } from "react";
 import { toast } from "react-toastify";
 import * as yup from "yup";
 /**
@@ -21,6 +21,7 @@ const validation = yup.object().shape({
   description: yup.string().default(""),
 });
 const CategoryForm = ({ onClose, category }: { onClose?: () => void; category?: ICategoryDoc }) => {
+  const router = useRouter();
   const {
     isSubmitting,
     isValid,
@@ -32,12 +33,13 @@ const CategoryForm = ({ onClose, category }: { onClose?: () => void; category?: 
     handleBlur,
     handleChange,
   } = useFormik({
-    initialValues:
-      {
-        ...categoryService.getInitialObject(),
-        title: category?.title,
-        description: category?.description,
-      } ?? categoryService.getInitialObject(),
+    initialValues: category
+      ? {
+          ...categoryService.getInitialObject(),
+          title: category?.title,
+          description: category?.description,
+        }
+      : categoryService.getInitialObject(),
     enableReinitialize: !!category,
     validationSchema: validation,
     async onSubmit(values, { setSubmitting }) {
@@ -83,7 +85,11 @@ const CategoryForm = ({ onClose, category }: { onClose?: () => void; category?: 
         touched={touched}
       />
       <div className=" mt-3 pt-3 flex justify-end">
-        <Button color="secondary" onClick={onClose} className="mr-2">
+        <Button
+          color="secondary"
+          onClick={onClose ? onClose : () => router.push("/admin/category")}
+          className="mr-2"
+        >
           {AppContent.cancel}
         </Button>
         <Button disabled={enabled} type="submit" size="sm">

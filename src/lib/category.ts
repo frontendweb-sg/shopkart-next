@@ -43,5 +43,6 @@ const updateCategory = async (id: string, values: ICategory) => {
 const deleteCategory = async (id: string) => {
   await categoryService.delete(id);
   revalidatePath("/admin/category");
+  return true;
 };
 export { getCategoryById, deleteCategory, updateCategory, getCategories, addCategory };

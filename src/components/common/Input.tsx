@@ -27,10 +27,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) => {
-    const error =
-      errors![name as keyof typeof errors] && touched![name as keyof typeof touched]
-        ? errors![name as keyof typeof errors]
-        : null;
+    // const error =
+    //   errors![name as keyof typeof errors] && touched![name as keyof typeof touched]
+    //     ? errors![name as keyof typeof errors]
+    //     : null;
+    const error = null;
 
     const classes = classNames(
       "border text-sm border-solid rounded-md flex items-center px-4",

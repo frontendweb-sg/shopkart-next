@@ -23,9 +23,7 @@ const DeleteCategory = ({ category }: DeleteCategoryProps) => {
       open: true,
       async onSubmit() {
         try {
-          startTransition(() => {
-            deleteCategory(category.id);
-          });
+          await deleteCategory(category.id);
           toast.success("Category deleted successfully!");
           onCancelConfirmation();
         } catch (error) {

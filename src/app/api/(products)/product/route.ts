@@ -17,9 +17,9 @@ export async function GET(req: NextRequest) {
   try {
     const query = req.nextUrl.searchParams;
     const category = query.get("category");
-    let products = (await Product.find({})) as IProductDoc[];
-    if (category !== "undefined") {
-      console.log("hi", category);
+    let products = (await Product.find({}).populate("category")) as IProductDoc[];
+
+    if (category) {
       products = (await Product.find({}).populate({
         path: "category",
         match: { slug: { $eq: query.get("category") } },
@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
       slug: body.slug,
     })) as IProductDoc;
     if (hasProduct) throw new BadRequestError("Product already existed!");
-
+    body.price = +body.price;
     const product = new Product(body);
     const result = await product.save();
     return NextResponse.json(result, { status: 201 });

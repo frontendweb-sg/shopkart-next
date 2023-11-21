@@ -62,6 +62,11 @@ type TableProps<T, K extends keyof T> = {
 
 type SelectProps<T> = {
   options: T[];
-  defaultValue: T;
+  idProp?: string;
+  defaultValue?: T | null;
+  name: string;
+  isSearch?: boolean;
   getOptionLabel?: (option: T) => string;
+  getOptionValue?: (option: T) => React.ReactNode;
+  isMulti?: boolean;
 };
