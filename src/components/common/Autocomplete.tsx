@@ -34,7 +34,10 @@ const Autocomplete = <T,>({
 
   const { open, openHandler, closeHandler, toggleHandler } = useToggle();
   const classes = classNames("relative w-full mb-2");
-  const optionLabel = getOptionLabel ?? ((option) => option["label" as keyof T] as string);
+  const optionLabel = useMemo(
+    () => getOptionLabel ?? ((option: T) => option["label" as keyof T] as string),
+    [getOptionLabel]
+  );
 
   const autocompleteRef = useOutsideClick(closeHandler);
 
@@ -98,10 +101,7 @@ const Autocomplete = <T,>({
           {display as ReactNode}
         </div>
         {open && (
-          <div
-            className="absolute top-full bg-white w-full shadow rounded-b-sm p-3"
-            role="combobox"
-          >
+          <div className="absolute top-full bg-white w-full shadow rounded-b-sm p-3">
             {isSearch && (
               <div className="dropdown-search mb-3" role="searchbox">
                 <input

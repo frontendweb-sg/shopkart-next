@@ -27,7 +27,16 @@ const AppProvider = ({ children }: { children: ReactNode }) => {
       deleteItemFromCart,
       increaseQty,
     }),
-    [confirm, cart, onCancelConfirmation, onConfirmation]
+    [
+      confirm,
+      cart,
+      onCancelConfirmation,
+      onConfirmation,
+      addItemToCart,
+      decreaseQty,
+      deleteItemFromCart,
+      increaseQty,
+    ]
   );
 
   return <AppContext.Provider value={state}>{children}</AppContext.Provider>;
