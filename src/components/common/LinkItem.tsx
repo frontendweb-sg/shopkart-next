@@ -15,10 +15,10 @@ export type LinkItemProps = LinkProps &
  * @returns
  */
 const LinkItem = ({ parentProps, menu, href, className, children, ...rest }: LinkItemProps) => {
-  const classes = classNames(className);
+  const classes = classNames("nav-link", className);
   if (menu) {
     return (
-      <li className={classNames(parentProps?.className)} {...parentProps}>
+      <li className={classNames("nav-item ", parentProps?.className)} {...parentProps}>
         <Link className={classes} href={href} {...rest}>
           {children}
         </Link>

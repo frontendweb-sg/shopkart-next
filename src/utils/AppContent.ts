@@ -22,4 +22,7 @@ export const AppContent = {
   product: "Product",
   products: "Products",
   addToCart: "Add to cart",
+  checkout: "Checkout",
+  shop: "Shop",
+  details: "Details",
 };

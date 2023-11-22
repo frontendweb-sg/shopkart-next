@@ -1,0 +1,15 @@
+.navbar {
+  @apply relative z-20 w-full shadow-sm;
+  @layer is-scrolling;
+
+  ul {
+    .nav-item {
+      .nav-link {
+        @apply text-sm py-5 px-1;
+        &:hover {
+          @apply text-rose-600;
+        }
+      }
+    }
+  }
+}

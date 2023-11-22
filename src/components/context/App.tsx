@@ -12,6 +12,7 @@ type AppState = {
   deleteItemFromCart: (item: any) => void;
   increaseQty: (item: any) => void;
 };
+
 export const AppContext = createContext<AppState | null>(null);
 const AppProvider = ({ children }: { children: ReactNode }) => {
   const { cart, addItemToCart, decreaseQty, deleteItemFromCart, increaseQty } = useCart();
@@ -47,4 +48,5 @@ export const useApp = () => {
   if (!context) throw new Error("Context can not be empty!");
   return context;
 };
+
 export default AppProvider;

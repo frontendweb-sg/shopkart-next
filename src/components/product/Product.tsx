@@ -1,9 +1,11 @@
 import { ICategory } from "@/models/category";
-import { IProduct, IProductDoc } from "@/models/product";
+import { IProductDoc } from "@/models/product";
 import Image from "next/image";
-import Button from "../common/Button";
-import { FaRupeeSign } from "react-icons/fa";
 import CartButton from "../cart/CartButton";
+import classNames from "classnames";
+import Price from "./Price";
+import LinkItem from "../common/LinkItem";
+import { AppContent } from "@/utils/AppContent";
 
 type ProductProps = {
   product: IProductDoc;
@@ -11,36 +13,39 @@ type ProductProps = {
 
 const Product = ({ product }: ProductProps) => {
   return (
-    <div className="group box-border overflow-hidden flex rounded-md cursor-pointer ltr:pr-0 rtl:pl-0 pb-2 lg:pb-3 flex-col items-start transition duration-200 ease-in-out transform hover:-translate-y-1 md:hover:-translate-y-1.5 hover:shadow-product  bg-white">
-      <div className="flex mb-3 md:mb-3.5">
-        <Image alt="" src="/image.webp" width={400} height={200} />
+    <div
+      className={classNames(
+        "group relative  border min-h-full border-gray-50 rounded-md pb-10 hover:bg-gray-100"
+      )}
+    >
+      <div className="flex h-48 rounded-t-md overflow-hidden relative">
+        <Image alt="" src="/image.webp" fill={true} />
       </div>
-
-      <div className="w-full overflow-hidden p-2 md:px-2.5 xl:px-4">
-        {(product.category as ICategory)?.title}
-        <h2 className="truncate mb-1 text-sm md:text-base font-semibold text-heading">
-          {product.title}
-        </h2>
-        <p className="text-body text-xs lg:text-sm leading-normal xl:leading-relaxed max-w-[250px] truncate">
-          {product.description}
+      <div className="w-full p-3">
+        <h6 className="text-[10px] text-rose-600 font-semibold uppercase">
+          {(product.category as ICategory)?.title}
+        </h6>
+        <h5 className="truncate text-[12px] font-semibold">{product.title}</h5>
+        <p className="text-body text-sm text-gray-600 leading-normal  truncate">
+          {product.description.substring(0, 50)}
         </p>
-        <div
-          className="font-semibold text-sm sm:text-base mt-1.5 flex flex-wrap gap-x-2 lg:text-lg lg:mt-2.5
-           text-heading"
-        >
-          <span className="flex text-md text-rose-600 items-center false">
-            <FaRupeeSign />
-            {product.price}
-          </span>
+        <Price offerPrice={product.price} price={10} />
+        <div className="hidden left-3 right-3 items-center  justify-between group-hover:flex absolute bottom-3">
+          <LinkItem
+            className="btn btn-primary btn-xs"
+            href={`/products/${(product.category as ICategory).slug}/${product.slug}`}
+          >
+            {AppContent.details}
+          </LinkItem>
+          <CartButton
+            item={{
+              id: product.id,
+              price: product.price,
+              productName: product.title,
+              productId: product.id,
+            }}
+          />
         </div>
-        <CartButton
-          item={{
-            id: product.id,
-            price: product.price,
-            productName: product.title,
-            productId: product.id,
-          }}
-        />
       </div>
     </div>
   );

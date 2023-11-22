@@ -19,10 +19,10 @@ class ProductService implements ApiService<IProductDoc, IProduct> {
     };
   }
   getAll(query?: string): Promise<AxiosResponse<IProductDoc[], any>> {
-    return Api.get(SERVICE_API_URL);
+    return Api.get(`${SERVICE_API_URL}?${query}`);
   }
-  getById(id: string): Promise<AxiosResponse<IProductDoc, any>> {
-    return Api.get(SERVICE_API_URL);
+  getById(slug: string): Promise<AxiosResponse<IProductDoc, any>> {
+    return Api.get(`${SERVICE_API_URL}/${slug}`);
   }
   getByCategoryId(categoryId: string) {
     return Api.get(SERVICE_API_URL);

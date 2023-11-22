@@ -1,11 +1,11 @@
 import AuthProvider from "@/components/context/Auth";
+import Confirmation from "@/components/common/Confirmation";
 import type { Metadata } from "next";
 import { getServerSession } from "next-auth";
-import { roboto } from "@/utils/fonts";
+import { lato, railway } from "@/utils/fonts";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.scss";
-import Confirmation from "@/components/common/Confirmation";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,10 +16,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const session = await getServerSession();
   return (
     <html lang="en">
-      <body className={roboto.className}>
+      <body className={lato.className}>
         <AuthProvider session={session!}>
-          <ToastContainer />
           <Confirmation />
+          <ToastContainer />
           {children}
         </AuthProvider>
       </body>

@@ -16,16 +16,27 @@ export async function GET(req: NextRequest) {
   await connectDb();
   try {
     const query = req.nextUrl.searchParams;
+    const slug = query.get("q");
     const category = query.get("category");
-    let products = (await Product.find({}).populate("category")) as IProductDoc[];
+    const filter = slug
+      ? {
+          slug: {
+            $regex: slug,
+            $options: "i",
+          },
+        }
+      : {};
+    let products = (await Product.find(filter).populate("category")) as IProductDoc[];
 
     if (category) {
-      products = (await Product.find({}).populate({
+      products = (await Product.find(filter).populate({
         path: "category",
-        match: { slug: { $eq: query.get("category") } },
+        match: {
+          slug: category,
+        },
       })) as IProductDoc[];
+      products = products.filter((item: IProductDoc) => item.category);
     }
-
     return NextResponse.json(products, { status: 200 });
   } catch (error) {
     return errorHandler(error as CustomError);

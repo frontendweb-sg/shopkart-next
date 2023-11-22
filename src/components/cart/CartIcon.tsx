@@ -14,17 +14,14 @@ const CartIcon = () => {
   const router = useRouter();
 
   return (
-    <div
-      className="relative"
-      // onMouseEnter={openHandler} onMouseLeave={closeHandler}
-    >
+    <div className="relative" onMouseEnter={openHandler} onMouseLeave={closeHandler}>
       <div className="relative">
         <FaShoppingCart />
         <div className="absolute -top-2 -right-3 rounded-full w-4 h-4 text-center leading-4 bg-rose-600 text-white text-xs">
           {cart.items.length}
         </div>
       </div>
-      {!open && (
+      {open && (
         <div className="absolute top-full right-0">
           <div className="bg-white shadow w-80 p-3 mt-3 rounded-md">
             <div>

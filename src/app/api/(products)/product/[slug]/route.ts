@@ -7,7 +7,7 @@ import { toSlug } from "@/utils";
 import { NextRequest, NextResponse } from "next/server";
 
 interface IParams {
-  params: { productId: String };
+  params: { slug: String };
 }
 
 /**
@@ -19,9 +19,9 @@ interface IParams {
 export async function GET(req: NextRequest, { params }: IParams) {
   await connectDb();
   try {
-    const productId = params.productId;
+    const slug = params.slug;
 
-    const product = (await Product.findById(productId).populate("category")) as IProductDoc;
+    const product = (await Product.findOne({ slug: slug }).populate("category")) as IProductDoc;
     if (!product) throw new BadRequestError("Product is not exist!");
 
     return NextResponse.json(product, { status: 200 });
@@ -40,7 +40,7 @@ export async function PUT(req: NextRequest, { params }: IParams) {
   await connectDb();
   try {
     const searchParams = req.nextUrl.searchParams;
-    const productId = params.productId as string;
+    const productId = params.slug as string;
     const status = searchParams.get("status") as DocVisibility;
 
     if (status) {
@@ -75,7 +75,7 @@ export async function PUT(req: NextRequest, { params }: IParams) {
 export async function DELETE(req: NextRequest, { params }: IParams) {
   await connectDb();
   try {
-    const productId = params.productId as string;
+    const productId = params.slug as string;
 
     const product = (await Product.findById(productId)) as IProductDoc;
 

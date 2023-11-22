@@ -1,9 +1,10 @@
+import Footer from "@/components/layouts/Footer";
 import Header from "@/components/layouts/Header";
-import UserSidebar from "@/components/users/UserSidebar";
+import Sidebar from "@/components/layouts/Sidebar";
 import { ReactNode } from "react";
 
 /**
- * User layout
+ * Public layout
  * @param param0
  * @returns
  */
@@ -11,12 +12,13 @@ const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <Header />
-      <div className="mx-auto max-w-[1340px] px-4 md:px-8 2xl:px-6">
+      <main className="flex-1 mx-auto max-w-[1200px] px-4 my-4">
         <div className="grid grid-cols-12 gap-4">
-          <UserSidebar />
-          <main>{children}</main>
+          <Sidebar className="col-span-3" />
+          <div className="col-span-9">{children}</div>
         </div>
-      </div>
+      </main>
+      <Footer />
     </>
   );
 };

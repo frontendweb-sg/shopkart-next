@@ -1,6 +1,6 @@
-import Link from "next/link";
 import Logo from "../common/Logo";
 import Navbar from "./Navbar";
+import Container from "../common/Container";
 
 /**
  * Header component
@@ -8,11 +8,11 @@ import Navbar from "./Navbar";
  */
 const Header = () => {
   return (
-    <header className="relative z-20 w-full h-16 sm:h-20 border-b lg:h-16  items-center is-scrolling">
-      <div className="w-5/6 m-auto min-h-full items-center  flex justify-between">
-        <Logo href="/" />
+    <header className="navbar">
+      <Container className="flex items-center justify-between">
+        <Logo href="/" className="mr-8" />
         <Navbar />
-      </div>
+      </Container>
     </header>
   );
 };

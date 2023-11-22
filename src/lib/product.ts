@@ -17,10 +17,15 @@ const getProducts = async (query?: string) => {
   return response.data;
 };
 
+const getProduct = async (id: string) => {
+  const response = await productService.getById(id);
+  return response.data;
+};
+
 const addProduct = async (product: IProduct) => {
   const response = await productService.add(product);
   revalidatePath("/admin/products");
   redirect("/admin/products");
   return response.data;
 };
-export { getProductByCategory, getProducts, addProduct };
+export { getProductByCategory, getProducts, addProduct, getProduct };
