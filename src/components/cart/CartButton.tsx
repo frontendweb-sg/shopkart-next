@@ -5,7 +5,7 @@ import Button from "../common/Button";
 import { useApp } from "../context/App";
 
 const CartButton = ({ item }: { item: ICart }) => {
-  const { cart, addItemToCart } = useApp();
+  const { addItemToCart } = useApp();
 
   return (
     <div>

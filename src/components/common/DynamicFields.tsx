@@ -41,8 +41,8 @@ const DynamicFields = memo(function DynamicFields<T extends Readonly<T>>({
                   onChange={onChange}
                   onBlur={onBlur}
                   label="Key"
-                  name={`${name}.${[index]}["title"]`}
-                  value={item["title" as keyof T]}
+                  name={`${name}.${[index]}["name"]`}
+                  value={item["name" as keyof T]}
                 />
               </div>
               <div>

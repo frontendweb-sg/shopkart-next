@@ -14,7 +14,7 @@ const Page = async ({ searchParams }: { searchParams: any }) => {
       <div className="grid grid-cols-12 gap-4">
         {products.map((product: IProductDoc) => {
           return (
-            <div key={product.id} className="col-span-3">
+            <div key={product.id} className="lg:col-span-4 xl:col-span-3 md:col-span-4">
               <Product product={product} />
             </div>
           );

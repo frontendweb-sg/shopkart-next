@@ -37,6 +37,7 @@ const ProductForm = ({ categories }: { categories: ICategoryDoc[] }) => {
         if (!values.category) {
           values.category = categories[0].id;
         }
+        console.log("values", values);
         await addProduct(values as IProduct);
         toast.success("Product added successfully!");
         setSubmitting(false);
@@ -49,7 +50,7 @@ const ProductForm = ({ categories }: { categories: ICategoryDoc[] }) => {
 
   const enable = isSubmitting || (dirty && !isValid);
   const { handleAdd, handleRemove } = useDynamicForm({
-    initialValue: { title: "", value: "" },
+    initialValue: { name: "", value: "" },
     handler: setValues,
   });
 

@@ -25,4 +25,6 @@ export const AppContent = {
   checkout: "Checkout",
   shop: "Shop",
   details: "Details",
+  cart: "Cart",
+  buynow: "Buy now",
 };
